@@ -167,7 +167,7 @@
         "dataDisk8_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]}
     },
     "variables": {
-        "uniqueDiskPrefix": "[concat(parameters('vmName'),uniqueString(resourceGroup().id, parameters('vmName')),'_')]",
+        "uniqueDiskPrefix": "[concat(parameters('vmName'),'_',uniqueString(resourceGroup().id, parameters('vmName')),'_')]",
         "dataDiskArray": [
             {
                 "lun": "[parameters('dataDisk1_lun')]",
@@ -222,7 +222,7 @@
     "resources": [
         {
             "type": "Microsoft.Compute/disks",
-            "name": "[concat(parameters('vmName'),'_',parameters(concat('dataDisk',copyIndex(1),'_name')))]",
+            "name": "[concat(variables('uniqueDiskPrefix'),parameters(concat('dataDisk',copyIndex(1),'_name')))]",
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
             "copy":{
