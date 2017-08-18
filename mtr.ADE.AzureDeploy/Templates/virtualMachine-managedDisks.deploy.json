@@ -167,46 +167,47 @@
         "dataDisk8_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]}
     },
     "variables": {
+        "uniqueDiskPrefix": "[concat(parameters('vmName'),uniqueString(resourceGroup().id, parameters('vmName')),'_')]",
         "dataDiskArray": [
             {
                 "lun": "[parameters('dataDisk1_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk1_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk1_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk1_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk2_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk2_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk2_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk2_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk3_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk3_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk3_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk3_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk4_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk4_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk4_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk4_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk5_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk5_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk5_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk5_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk6_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk6_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk6_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk6_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk7_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk7_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk7_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk7_caching')]"
             },
@@ -221,7 +222,7 @@
     "resources": [
         {
             "type": "Microsoft.Compute/disks",
-            "name": "[parameters(concat('dataDisk',copyIndex(1),'_name'))]",
+            "name": "[concat(parameters('vmName'),'_',parameters(concat('dataDisk',copyIndex(1),'_name')))]",
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
             "copy":{
