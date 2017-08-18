@@ -230,7 +230,7 @@
             },
             "properties": {
                 "creationData": {
-                    "createOption": "[parameters(concat('dataDisk',copyIndex(1),'_createOpion'))]"
+                    "createOption": "[parameters(concat('dataDisk',copyIndex(1),'_createOption'))]"
                 },
                 "accountType": "[parameters(concat('dataDisk',copyIndex(1),'_storageType'))]",
                 "diskSizeGB": "[parameters(concat('dataDisk',copyIndex(1),'_diskSizeGB'))]",
