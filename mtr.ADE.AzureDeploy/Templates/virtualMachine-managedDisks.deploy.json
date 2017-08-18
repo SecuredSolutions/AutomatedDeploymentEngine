@@ -222,7 +222,7 @@
     "resources": [
         {
             "type": "Microsoft.Compute/disks",
-            "name": "[concat(parameters('vmName'),'_',parameters(concat('dataDisk',copyIndex(1),'_name')))]",
+            "name": "[concat(variables('uniqueDiskPrefix'),parameters(concat('dataDisk',copyIndex(1),'_name')))]",
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
             "copy":{
