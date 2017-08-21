@@ -32,12 +32,6 @@
             "description" : "Single IP Address for NIC"
         }
     },
-    "lbID": {
-        "type": "string", 
-        "metadata": {
-            "description": "ID Reference of Load Balancer"
-        }
-    },
     "lbBackendAddressPoolIds": {
       "type": "array"
     },

@@ -102,7 +102,6 @@
             "ipAddress" : {
                 "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
             },
-            "lbID": {"value": "[parameters('lbID')]"},
             "lbBackendAddressPoolIds": {"value": "[parameters('lbBackendAddressPoolIds')]"},
             "lbInboundNatRuleIds": {"value": "[parameters('lbInboundNatRuleIds')]"}
         }
