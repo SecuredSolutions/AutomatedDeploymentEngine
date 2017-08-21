@@ -64,12 +64,8 @@
                 "subnet": {
                     "id": "[parameters('subnetRef')]"
                 },
-                "loadBalancerBackendAddressPools": [
-                  "[parameters('lbBackendAddressPoolIds')]"
-                ],
-                "loadBalancerInboundNatRules": [
-                  "[parameters('lbInboundNatRuleIds')]"
-                ]
+                "loadBalancerBackendAddressPools": "[parameters('lbBackendAddressPoolIds')]",
+                "loadBalancerInboundNatRules": "[parameters('lbInboundNatRuleIds')]"
             }
           }
         ]
