@@ -32,12 +32,6 @@
       "metadata": {
         "description": "Suffix of Network Interface"
       }
-    },    
-    "instanceCount": {
-      "type" : "int",
-      "metadata": {
-        "description" : "Number of Nics to create"
-      }
     },
     "subnetRef": {
       "type": "string",
@@ -64,12 +58,8 @@
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
-      "name": "[concat(parameters('nicName'), '-', padLeft(copyIndex(1), 2, '0'),parameters('nicSuffix'))]",
+      "name": "[parameters('nicName')]",
       "location": "[parameters('resourceGroupLocation')]",
-      "copy": {
-        "name" : "nicLoop",
-        "count" : "[parameters('instanceCount')]"
-      },
       "dependsOn": [],
       "properties": {
         "ipConfigurations": [
@@ -93,14 +83,10 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('nicName'), '-', padLeft(copyIndex(1), 2, '0'), '-staticIPDeployment')]",
+      "name": "[concat(parameters('nicName'),'-staticIPDeployment')]",
       "apiVersion": "2015-01-01",
-      "copy": {
-        "name" : "staticLoop",
-        "count" : "[parameters('instanceCount')]"
-      },      
       "dependsOn": [
-        "[concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), '-', padleft(copyindex(1), 2, '0'),parameters('nicSuffix'))]"
+        "[concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -110,11 +96,11 @@
         },
         "parameters": {
             "subnetRef": {"value": "[parameters('subnetRef')]"},
-            "nicName": {"value": "[concat(parameters('nicName'), '-', padLeft(copyIndex(1), 2, '0'),parameters('nicSuffix'))]"}, 
+            "nicName": {"value": "[parameters('nicName')]"}, 
             "resourceGroupName": {"value": "[parameters('resourceGroupName')]"},             
             "resourceGroupLocation": {"value": "[parameters('resourceGroupLocation')]"},
             "ipAddress" : {
-                "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), '-', padleft(copyindex(1), 2, '0'),parameters('nicSuffix'))).ipConfigurations[0].properties.privateIPAddress]"
+                "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
             },
             "lbID": {"value": "[parameters('lbID')]"},
             "lbBackendAddressPoolIds": {"value": "[parameters('lbBackendAddressPoolIds')]"},
