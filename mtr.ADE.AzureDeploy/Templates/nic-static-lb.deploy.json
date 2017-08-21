@@ -40,12 +40,6 @@
         "description": "A reference to an existing subnet"
       }
     }, 
-    "lbID": {
-        "type": "string", 
-        "metadata": {
-            "description": "ID Reference of Load Balancer"
-        }
-    },
     "lbBackendAddressPoolIds": {
       "type": "array"
     },
