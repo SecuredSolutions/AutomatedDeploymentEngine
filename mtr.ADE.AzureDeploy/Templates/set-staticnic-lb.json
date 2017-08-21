@@ -37,7 +37,13 @@
         "metadata": {
             "description": "ID Reference of Load Balancer"
         }
-    } 
+    },
+    "lbBackendAddressPoolIds": {
+      "type": "array"
+    },
+    "lbInboudNatRuleIds": {
+      "type": "array"
+    }
   },
   "variables": {},
   "resources": [
@@ -58,9 +64,10 @@
                     "id": "[parameters('subnetRef')]"
                 },
                 "loadBalancerBackendAddressPools": [
-                    {
-                        "id": "[concat(parameters('lbID'), '/backendAddressPools/BackendPool1')]"
-                    }
+                    "[parameters('lbBackendAddressPoolIds')]"
+                ],
+                "loadBalancerInboundNatRules": [
+                  "[parameters('lbInboudNatRuleIds')]"
                 ]
             }
           }

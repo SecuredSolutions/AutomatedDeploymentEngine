@@ -51,7 +51,13 @@
         "metadata": {
             "description": "ID Reference of Load Balancer"
         }
-    } 
+    },
+    "lbBackendAddressPoolIds": {
+      "type": "array"
+    },
+    "lbInboudNatRuleIds": {
+      "type": "array"
+    }
   },
   "variables": {},
   "resources": [
@@ -75,9 +81,10 @@
                     "id": "[parameters('subnetRef')]"
                 },
                 "loadBalancerBackendAddressPools": [
-                    {
-                        "id": "[concat(parameters('lbID'), '/backendAddressPools/BackendPool1')]"
-                    }
+                  "[parameters('lbBackendAddressPoolIds')]"
+                ],
+                "loadBalancerInboundNatRules": [
+                  "[parameters('lbInboudNatRuleIds')]"
                 ]
             }
           }
@@ -109,7 +116,9 @@
             "ipAddress" : {
                 "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), '-', padleft(copyindex(1), 2, '0'),parameters('nicSuffix'))).ipConfigurations[0].properties.privateIPAddress]"
             },
-            "lbID": {"value": "[parameters('lbID')]"}     
+            "lbID": {"value": "[parameters('lbID')]"},
+            "lbBackendAddressPoolIds": {"value": "[parameters('lbBackendAddressPoolIds')]"},
+            "lbInboundNatRuleIds": {"value": "[parameters('lbInboudNatRuleIds')]"}
         }
       }
     }
