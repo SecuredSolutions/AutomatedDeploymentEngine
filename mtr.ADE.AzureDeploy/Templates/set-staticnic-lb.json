@@ -41,7 +41,7 @@
     "lbBackendAddressPoolIds": {
       "type": "array"
     },
-    "lbInboudNatRuleIds": {
+    "lbInboundNatRuleIds": {
       "type": "array"
     }
   },
@@ -67,7 +67,7 @@
                     "[parameters('lbBackendAddressPoolIds')]"
                 ],
                 "loadBalancerInboundNatRules": [
-                  "[parameters('lbInboudNatRuleIds')]"
+                  "[parameters('lbInboundNatRuleIds')]"
                 ]
             }
           }
