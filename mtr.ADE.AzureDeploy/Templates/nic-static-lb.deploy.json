@@ -41,10 +41,12 @@
       }
     }, 
     "lbBackendAddressPoolIds": {
-      "type": "array"
+      "type": "array",
+      "defaultValue": []
     },
     "lbInboundNatRuleIds": {
-      "type": "array"
+      "type": "array",
+      "defaultValue": []
     }
   },
   "variables": {},
