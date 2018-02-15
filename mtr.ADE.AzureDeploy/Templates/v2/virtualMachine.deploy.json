@@ -107,8 +107,7 @@
             "ReadOnly", "ReadWrite","None"
         ]},
         "dataDisk3_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32, "maxValue": 4095},
-        "dataDisk3_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
-
+        "dataDisk3_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},8
         "dataDisk4_name": {"type": "string","defaultValue": "dataDisk4"},
         "dataDisk4_lun": {"type": "int", "defaultValue": 3},
         "dataDisk4_createOption": {"type": "string", "defaultValue": "Empty"},
@@ -155,7 +154,7 @@
         "dataDisk8_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk9_name": {"type": "string","defaultValue": "dataDisk9"},
-        "dataDisk9_lun": {"type": "int", "defaultValue": 7},
+        "dataDisk9_lun": {"type": "int", "defaultValue": 8},
         "dataDisk9_createOption": {"type": "string", "defaultValue": "Empty"},
         "dataDisk9_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
@@ -164,7 +163,7 @@
         "dataDisk9_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk10_name": {"type": "string","defaultValue": "dataDisk10"},
-        "dataDisk10_lun": {"type": "int", "defaultValue": 7},
+        "dataDisk10_lun": {"type": "int", "defaultValue": 9},
         "dataDisk10_createOption": {"type": "string", "defaultValue": "Empty"},
         "dataDisk10_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
