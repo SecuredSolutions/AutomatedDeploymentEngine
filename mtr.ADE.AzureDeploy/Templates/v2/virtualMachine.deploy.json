@@ -107,7 +107,8 @@
             "ReadOnly", "ReadWrite","None"
         ]},
         "dataDisk3_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32, "maxValue": 4095},
-        "dataDisk3_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},8
+        "dataDisk3_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
+        
         "dataDisk4_name": {"type": "string","defaultValue": "dataDisk4"},
         "dataDisk4_lun": {"type": "int", "defaultValue": 3},
         "dataDisk4_createOption": {"type": "string", "defaultValue": "Empty"},
