@@ -1,0 +1,89 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceGroupName": {
+        "type": "string", 
+        "metadata": {"description": "Name of parent Resource Group"}
+    },      
+    "resourceGroupLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "A reference to a resource location"
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Standard_GRS",
+        "Premium_LRS"
+      ],
+      "metadata": {
+        "description": "Storage Account Type for Virtual Machines"
+      }
+    },
+    "storageAccountName": {
+        "type": "string",
+        "defaultValue": "newstorageaccount",
+        "metadata": {
+            "description": "Unique, lowercase, alpha-numeric name for storage account"
+        }
+    },
+    "KeySource": {
+      "type": "string",
+      "defaultValue": "Microsoft.Storage",
+      "metadata": {
+        "description": "Storage Account Encryption: Key Source"
+      }
+    },
+    "StorageKind": {
+      "type": "string",
+      "defaultValue": "Storage",
+      "allowedValues": [
+        "Storage", 
+        "BlobStorage"
+      ]
+    },
+    "blobEncryptionEnabled": {
+      "type": "bool", 
+      "defaultValue": true,
+      "metadata": {
+        "description": "Whether or not to encrypt the storage account, providing secure data at rest."
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageAccountName')]",
+      "apiVersion": "2016-01-01",
+      "location": "[parameters('resourceGroupLocation')]",
+      "tags":{
+        "displayName": "Storage Account"
+      },
+      "sku": {
+        "name": "[parameters('storageAccountType')]"
+      },
+      "kind": "[parameters('StorageKind')]",
+      "properties": {
+        "encryption" : {
+          "keySource": "[parameters('KeySource')]", 
+          "services" : {
+            "blob" : {
+              "enabled": "[parameters('blobEncryptionEnabled')]"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+      "storageAccountRef": {
+          "type": "object",
+          "value": "[reference(parameters('storageAccountName'))]"
+      }
+  }
+}
