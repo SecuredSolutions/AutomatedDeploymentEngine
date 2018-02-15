@@ -2,14 +2,6 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "resourceGroupName": {
-            "type": "string", 
-            "metadata": {"description": "Name of parent Resource Group"}
-        },
-        "resourceGroupLocation": {
-            "type": "string",
-            "metadata": {"description": "Location of parent Resource Group"}
-        },
         "adminUsername": {
             "type": "string",
             "metadata": {"description": "Admin username"}
@@ -30,11 +22,7 @@
         },
         "imageSKU": {
             "type": "string",
-            "defaultValue": "2012-R2-Datacenter",
-            "allowedValues": [
-                "2012-R2-Datacenter",
-                "2016-Datacenter"
-            ],
+            "defaultValue": "2016-Datacenter",
             "metadata": {"description": "Image SKU"}
         },
         "vmSize": {
@@ -91,7 +79,7 @@
             "type": "int",
             "defaultValue": 0,
             "minValue": 0,
-            "maxValue": 8,
+            "maxValue": 10,
             "metadata": {"description": "Number of Data Disks to add to VM - taken from dataDiskArray variable"}
         },
         "dataDisk1_name": {"type": "string","defaultValue": "dataDisk1"},
@@ -100,7 +88,7 @@
         "dataDisk1_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk1_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk1_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk1_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk2_name": {"type": "string","defaultValue": "dataDisk2"},
@@ -109,7 +97,7 @@
         "dataDisk2_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk2_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk2_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk2_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk3_name": {"type": "string","defaultValue": "dataDisk3"},
@@ -118,7 +106,7 @@
         "dataDisk3_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk3_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk3_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk3_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk4_name": {"type": "string","defaultValue": "dataDisk4"},
@@ -127,7 +115,7 @@
         "dataDisk4_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk4_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk4_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk4_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk5_name": {"type": "string","defaultValue": "dataDisk5"},
@@ -136,7 +124,7 @@
         "dataDisk5_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk5_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk5_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk5_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk6_name": {"type": "string","defaultValue": "dataDisk6"},
@@ -145,7 +133,7 @@
         "dataDisk6_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk6_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk6_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk6_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk7_name": {"type": "string","defaultValue": "dataDisk7"},
@@ -154,7 +142,7 @@
         "dataDisk7_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk7_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
+        "dataDisk7_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
         "dataDisk7_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
 
         "dataDisk8_name": {"type": "string","defaultValue": "dataDisk8"},
@@ -163,8 +151,26 @@
         "dataDisk8_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
             "ReadOnly", "ReadWrite","None"
         ]},
-        "dataDisk8_diskSizeGB": {"type": "int", "defaultValue": 20, "minValue": 20,"maxValue": 1023},
-        "dataDisk8_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]}
+        "dataDisk8_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
+        "dataDisk8_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
+
+        "dataDisk9_name": {"type": "string","defaultValue": "dataDisk9"},
+        "dataDisk9_lun": {"type": "int", "defaultValue": 7},
+        "dataDisk9_createOption": {"type": "string", "defaultValue": "Empty"},
+        "dataDisk9_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
+            "ReadOnly", "ReadWrite","None"
+        ]},
+        "dataDisk9_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
+        "dataDisk9_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]},
+
+        "dataDisk10_name": {"type": "string","defaultValue": "dataDisk10"},
+        "dataDisk10_lun": {"type": "int", "defaultValue": 7},
+        "dataDisk10_createOption": {"type": "string", "defaultValue": "Empty"},
+        "dataDisk10_caching": {"type": "string", "defaultValue": "ReadWrite", "allowedValues": [
+            "ReadOnly", "ReadWrite","None"
+        ]},
+        "dataDisk10_diskSizeGB": {"type": "int", "defaultValue":  32, "minValue":  32,"minValue":  4095},
+        "dataDisk10_storageType": {"type": "string", "defaultValue": "Standard_LRS", "allowedValues": ["Standard_LRS", "Premium_LRS"]}
     },
     "variables": {
         "uniqueDiskPrefix": "[concat(parameters('vmName'),'_',uniqueString(resourceGroup().id, parameters('vmName')),'_')]",
@@ -216,6 +222,18 @@
                 "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk8_name'))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk8_caching')]"
+            },
+            {
+                "lun": "[parameters('dataDisk9_lun')]",
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk9_name'))]"},
+                "createOption": "Attach",
+                "caching": "[parameters('dataDisk9_caching')]"
+            },
+            {
+                "lun": "[parameters('dataDisk10_lun')]",
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk10_name'))]"},
+                "createOption": "Attach",
+                "caching": "[parameters('dataDisk10_caching')]"
             }
         ]
     },
@@ -242,13 +260,13 @@
             "apiVersion": "2016-04-30-preview",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
-            "location": "[parameters('resourceGroupLocation')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "managedDisksCopy"
             ],
             "properties": {
                 "availabilitySet": {
-                    "id": "[resourceId(parameters('resourceGroupName'),'Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
+                    "id": "[resourceId(resourceGroup().name,'Microsoft.Compute/availabilitySets',parameters('availabilitySetName'))]"
                 },
                 "hardwareProfile": {
                     "vmSize": "[parameters('vmSize')]"
@@ -282,13 +300,13 @@
                 "networkProfile": {
                 "networkInterfaces": [
                         {
-                        "id": "[resourceId(parameters('resourceGroupName'),'Microsoft.Network/networkInterfaces',parameters('nicName'))]"
+                        "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',parameters('nicName'))]"
                         }
                     ]
                 },
                     "diagnosticsProfile": {
                     "bootDiagnostics": {
-                        "enabled": "true",
+                        "enabled": true,
                         "storageUri": "[parameters('diagnosticsStoragePath')]"
                     }
                 }
