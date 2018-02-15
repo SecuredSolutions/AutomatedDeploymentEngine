@@ -219,19 +219,19 @@
             },
             {
                 "lun": "[parameters('dataDisk8_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk8_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk8_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk8_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk9_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk9_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk9_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk9_caching')]"
             },
             {
                 "lun": "[parameters('dataDisk10_lun')]",
-                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',parameters('dataDisk10_name'))]"},
+                "managedDisk": {"id": "[resourceId('Microsoft.Compute/disks',concat(variables('uniqueDiskPrefix'),parameters('dataDisk10_name')))]"},
                 "createOption": "Attach",
                 "caching": "[parameters('dataDisk10_caching')]"
             }
