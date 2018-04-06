@@ -3,22 +3,22 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "resourceGroupName": {
-        "type": "string", 
-        "metadata": {"description": "Name of parent Resource Group"}
-    },      
+      "type": "string",
+      "metadata": { "description": "Name of parent Resource Group" }
+    },
     "resourceGrouplocation": {
       "type": "string",
       "metadata": {
         "description": "A reference to a resource location"
       }
     },
-    "resourceTemplateUri" : {
+    "resourceTemplateUri": {
       "type": "string",
       "minLength": 14,
       "metadata": {
-        "description" : "The URI hosting nested templates, for linked deployments"
+        "description": "The URI hosting nested templates, for linked deployments"
       }
-    },    
+    },
     "nicName": {
       "type": "string",
       "defaultValue": "",
@@ -39,7 +39,11 @@
       "metadata": {
         "description": "A reference to an existing subnet"
       }
-    }, 
+    },
+    "dnsServers": {
+      "type": "array",
+      "defaultValue": []
+    },
     "lbBackendAddressPoolIds": {
       "type": "array",
       "defaultValue": []
@@ -62,12 +66,12 @@
           {
             "name": "ipconfig1",
             "properties": {
-                "privateIPAllocationMethod": "Dynamic",
-                "subnet": {
-                    "id": "[parameters('subnetRef')]"
-                },
-                "loadBalancerBackendAddressPools": "[parameters('lbBackendAddressPoolIds')]",
-                "loadBalancerInboundNatRules": "[parameters('lbInboundNatRuleIds')]"
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[parameters('subnetRef')]"
+              },
+              "loadBalancerBackendAddressPools": "[parameters('lbBackendAddressPoolIds')]",
+              "loadBalancerInboundNatRules": "[parameters('lbInboundNatRuleIds')]"
             }
           }
         ]
@@ -83,19 +87,20 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-            "uri": "[concat(parameters('resourceTemplateUri'), 'set-staticnic-lb.json')]",
-            "contentVersion": "1.0.0.0"
+          "uri": "[concat(parameters('resourceTemplateUri'), 'set-staticnic-lb.json')]",
+          "contentVersion": "1.0.0.0"
         },
         "parameters": {
-            "subnetRef": {"value": "[parameters('subnetRef')]"},
-            "nicName": {"value": "[parameters('nicName')]"}, 
-            "resourceGroupName": {"value": "[parameters('resourceGroupName')]"},             
-            "resourceGroupLocation": {"value": "[parameters('resourceGroupLocation')]"},
-            "ipAddress" : {
-                "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
-            },
-            "lbBackendAddressPoolIds": {"value": "[parameters('lbBackendAddressPoolIds')]"},
-            "lbInboundNatRuleIds": {"value": "[parameters('lbInboundNatRuleIds')]"}
+          "subnetRef": { "value": "[parameters('subnetRef')]" },
+          "nicName": { "value": "[parameters('nicName')]" },
+          "resourceGroupName": { "value": "[parameters('resourceGroupName')]" },
+          "resourceGroupLocation": { "value": "[parameters('resourceGroupLocation')]" },
+          "ipAddress": {
+            "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))).ipConfigurations[0].properties.privateIPAddress]"
+          },
+          "dnsServers": "[parameters('dnsServers')]",
+          "lbBackendAddressPoolIds": { "value": "[parameters('lbBackendAddressPoolIds')]" },
+          "lbInboundNatRuleIds": { "value": "[parameters('lbInboundNatRuleIds')]" }
         }
       }
     }
