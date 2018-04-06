@@ -1,17 +1,7 @@
 {
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "resourceGroupName": {
-        "type": "string", 
-        "metadata": {"description": "Name of parent Resource Group"}
-    }, 
-    "resourceGroupLocation": {
-      "type": "string",
-      "metadata": {
-        "description": "A reference to a resource location"
-      }
-    },         
+  "parameters": {      
     "availabilitySetName": {
         "type": "string",
         "metadata": {
@@ -32,7 +22,7 @@
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[concat(parameters('availabilitySetName'), parameters('availabilitySetSuffix'))]",
       "apiVersion": "2016-04-30-preview",
-      "location": "[parameters('resourceGroupLocation')]",
+      "location": "[resourceGroup().location]",
       "properties": {
         "platformUpdateDomainCount": 5,
         "platformFaultDomainCount": 2

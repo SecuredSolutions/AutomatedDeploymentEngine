@@ -2,16 +2,6 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "resourceGroupName": {
-        "type": "string", 
-        "metadata": {"description": "Name of parent Resource Group"}
-    },      
-    "resourceGrouplocation": {
-      "type": "string",
-      "metadata": {
-        "description": "A reference to a resource location"
-      }
-    },
     "resourceTemplateUri" : {
       "type": "string",
       "minLength": 14,
@@ -54,7 +44,7 @@
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(parameters('nicName'), '-', padLeft(copyIndex(1), 2, '0'), parameters('nicSuffix'))]",
-      "location": "[parameters('resourceGroupLocation')]",
+      "location": "[resourceGroup().location]",
       "copy": {
         "name" : "nicLoop",
         "count" : "[parameters('instanceCount')]"
@@ -94,8 +84,6 @@
         "parameters": {
             "subnetRef": {"value": "[parameters('subnetRef')]"},
             "nicName": {"value": "[concat(parameters('nicName'), '-', padLeft(copyIndex(1), 2, '0'),parameters('nicSuffix'))]"}, 
-            "resourceGroupName": {"value": "[parameters('resourceGroupName')]"},             
-            "resourceGroupLocation": {"value": "[parameters('resourceGroupLocation')]"},
             "ipAddress" : {
                 "value": "[reference(concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), '-', padleft(copyindex(1), 2, '0'),parameters('nicSuffix'))).ipConfigurations[0].properties.privateIPAddress]"
             }              
