@@ -80,7 +80,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(parameters('nicName'),'-staticIPDeployment')]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2018-01-01",
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', parameters('nicName'))]"
       ],
