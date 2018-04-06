@@ -1,17 +1,17 @@
 {
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {   
+  "parameters": {
     "resourceGroupName": {
-        "type": "string", 
-        "metadata": {"description": "Name of parent Resource Group"}
-    },      
+      "type": "string",
+      "metadata": { "description": "Name of parent Resource Group" }
+    },
     "resourceGrouplocation": {
       "type": "string",
       "metadata": {
         "description": "A reference to a resource location"
       }
-    },      
+    },
     "nicName": {
       "type": "string",
       "defaultValue": "",
@@ -27,10 +27,14 @@
       }
     },
     "ipAddress": {
-        "type": "string",
-        "metadata": {
-            "description" : "Single IP Address for NIC"
-        }
+      "type": "string",
+      "metadata": {
+        "description": "Single IP Address for NIC"
+      }
+    },
+    "dnsServers": {
+      "type": "array",
+      "defaultValue": []
     },
     "lbBackendAddressPoolIds": {
       "type": "array"
@@ -42,23 +46,26 @@
   "variables": {},
   "resources": [
     {
-      "apiVersion": "2015-05-01-preview",
+      "apiVersion": "2018-01-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[parameters('nicName')]",
       "location": "[parameters('resourceGroupLocation')]",
       "dependsOn": [],
       "properties": {
+        "dnsSettings": {
+           "dnsServers":  "[parameters('dnsServers')]"
+        },
         "ipConfigurations": [
           {
             "name": "ipconfig1",
             "properties": {
-                "privateIPAllocationMethod": "Static",
-                "privateIPAddress": "[parameters('ipAddress')]",
-                "subnet": {
-                    "id": "[parameters('subnetRef')]"
-                },
-                "loadBalancerBackendAddressPools": "[parameters('lbBackendAddressPoolIds')]",
-                "loadBalancerInboundNatRules": "[parameters('lbInboundNatRuleIds')]"
+              "privateIPAllocationMethod": "Static",
+              "privateIPAddress": "[parameters('ipAddress')]",
+              "subnet": {
+                "id": "[parameters('subnetRef')]"
+              },
+              "loadBalancerBackendAddressPools": "[parameters('lbBackendAddressPoolIds')]",
+              "loadBalancerInboundNatRules": "[parameters('lbInboundNatRuleIds')]"
             }
           }
         ]
